@@ -54,6 +54,11 @@ public class Main {
         System.out.println("User added successfully!");
     }
 
+    public static List<User> DisplayUser(){
+        return users;
+    }
+
+
     public static void main(String[] args) {
         while (true) {
             System.out.println("\n====================================");
@@ -72,7 +77,9 @@ public class Main {
                     addUser();
                     break;
                 case 2:
-
+                    for (User user: DisplayUser())
+                        System.out.println(user);
+                    break;
                 case 3:
                     System.out.println("Goodbye!");
                     return;
