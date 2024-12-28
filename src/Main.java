@@ -140,6 +140,20 @@ public class Main {
         }
     }
 
+    public static  void DeleteUser(){
+        if (users.isEmpty()) {
+            System.out.println("There are no users!");
+            return;
+        }
+        System.out.println("enter id user :");
+        String id = scanner.nextLine();
+
+        users.removeIf(user -> user.getId().equals(id));
+
+
+        System.out.println("User with ID " + id + " delete succes!");
+    }
+
     public static void main(String[] args) {
         while (true) {
             System.out.println("\n====================================");
@@ -172,7 +186,7 @@ public class Main {
                     SearchUser();
                     break;
                 case 5:
-
+                    DeleteUser();
                     break;
                 case 6:
                     System.out.println("Goodbye!");
