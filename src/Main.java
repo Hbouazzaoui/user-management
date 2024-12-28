@@ -8,7 +8,6 @@ public class Main {
     static ArrayList<User> users = new ArrayList<>();
 
     public static void addUser() {
-        // TODO: generate id automatically
         System.out.print("Enter User ID: ");
         String id = scanner.nextLine();
 
@@ -45,19 +44,91 @@ public class Main {
                 role = "Client";
                 break;
             } else {
-                System.err.println("Invalid role choice. try again");
+                System.err.println("Invalid role choice. Try again.");
             }
         }
+
         Role rol = new Role(role);
-        User user = new User(id,name,age,email,phone,password,rol);
+        User user = new User(id, name, age, email, phone, password, rol);
         users.add(user);
         System.out.println("User added successfully!");
     }
 
-    public static List<User> DisplayUser(){
+    public static List<User> displayUsers() {
         return users;
     }
 
+    public static void updateUser() {
+        if (users.isEmpty()) {
+            System.out.println("There are no users!");
+            return;
+        }
+
+        System.out.print("Enter the User ID you want to modify: ");
+        String id = scanner.nextLine();
+
+        for (User user : users) {
+            if (id.equals(user.getId())) {
+                System.out.println("User found ");
+                System.out.println(user);
+
+                System.out.println("\n What do you want to modify:");
+                System.out.println("1 - Name");
+                System.out.println("2 - Age");
+                System.out.println("3 - Phone Number");
+                System.out.println("4 - Email");
+                System.out.println("5 - Password");
+                System.out.println("6 - Return");
+                System.out.print("=> ");
+
+                System.out.println("enter choice :");
+                int choice=scanner.nextInt();
+                scanner.nextLine();
+                switch (choice) {
+                    case 1:
+                        System.out.print("New name: ");
+                        String NewName=scanner.nextLine();
+                        user.setName(NewName);
+                        System.out.println("Updated!");
+                        break;
+                    case 2:
+                        System.out.print("New age: ");
+                        int newAge;
+                        try {
+                            newAge = scanner.nextInt();
+                            user.setAge(newAge);
+                            System.out.println("Updated!");
+                        } catch (Exception e) {
+                            System.out.println("Invalid age. Update canceled.");
+                            scanner.nextLine();
+                        }
+                        break;
+                    case 3:
+                        System.out.print("New phone number: ");
+                        user.setPhone(scanner.nextLine());
+                        System.out.println("Updated!");
+                        break;
+                    case 4:
+                        System.out.print("New email: ");
+                        user.setEmail(scanner.nextLine());
+                        System.out.println("Updated!");
+                        break;
+                    case 5:
+                        System.out.print("New password: ");
+                        user.setPassword(scanner.nextLine());
+                        System.out.println("Updated!");
+                        break;
+                    case 6:
+                        System.out.println("Returning to main menu.");
+                        return;
+                    default:
+                        System.out.println("Invalid choice. Returning to main menu.");
+                }
+                break;
+            }
+        }
+
+    }
 
     public static void main(String[] args) {
         while (true) {
@@ -66,9 +137,12 @@ public class Main {
             System.out.println("====================================");
             System.out.println("|  1. Add a User                   |");
             System.out.println("|  2. Display All Users            |");
-            System.out.println("|  3. Exit                         |");
+            System.out.println("|  3. Update a User                |");
+            System.out.println("|  4. Search User                   |");
+            System.out.println("|  5. Delete User                  |");
+            System.out.println("|  6. Exit                         |");
             System.out.println("====================================");
-            System.out.print(" Enter your choice: ");
+            System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -77,15 +151,27 @@ public class Main {
                     addUser();
                     break;
                 case 2:
-                    for (User user: DisplayUser())
+                    for (User user : displayUsers()) {
                         System.out.println(user);
+                    }
                     break;
                 case 3:
+                    updateUser();
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
                     System.out.println("Goodbye!");
                     return;
                 default:
+
                     System.out.println("Invalid option. Please try again.");
             }
         }
     }
 }
+
