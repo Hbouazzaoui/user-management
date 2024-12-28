@@ -130,6 +130,16 @@ public class Main {
 
     }
 
+    public static  void SearchUser(){
+        System.out.println("enter id :");
+        String id = scanner.nextLine();
+        for ( User user :users ){
+            if(id.equals(user.getId()) ){
+                System.out.println(user);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         while (true) {
             System.out.println("\n====================================");
@@ -159,7 +169,7 @@ public class Main {
                     updateUser();
                     break;
                 case 4:
-
+                    SearchUser();
                     break;
                 case 5:
 
